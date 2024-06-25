@@ -1,0 +1,54 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.0'
+	id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'com.jeongmi'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// 기본 디펜던시
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	// 테스트를 위한 디펜던시
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// DB를 위한 디펜던시 추가!(H2, Oracle, JPA)
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// Thymeleaf 레이아웃 적용을 위한 디펜던시(종속성)
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+	// 입력값 검증 디펜던시
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	// 스프링 시큐리티 디펜던시
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	// 마크다운 뷰어 디펜던시
+	implementation 'org.commonmark:commonmark:0.21.0'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
