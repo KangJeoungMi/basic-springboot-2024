@@ -15,7 +15,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 		- DB 연동이 무지 쉽다
 
 	- MVC
-		<img src="https://raw.githubusercontent.com/hugoMGSung/basic-springboot-2024/main/images/sp002.png" width="730">
+		<img src="https://raw.githubusercontent.com/KangJeoungMi/basic-springboot-2024/main/images/sp002.png" width="730">
 
 - Spring Boot 개발환경 설정
 	- Java JDK 확인 > 17버전 이상
@@ -76,7 +76,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 			- Apps > Spring01 Run | Debug 중에서 하나 아이콘 클릭 서버 실행
 			- 디버그로 실행해야 Hot code replace 가 동작!!!
 
-				<img src="https://raw.githubusercontent.com/hugoMGSung/basic-springboot-2024/main/images/sp001.png" width="350">
+				<img src="https://raw.githubusercontent.com/KangJeoungMi/basic-springboot-2024/main/images/sp001.png" width="350">
 
 		- 브라우저 변경설정
 			- 설정 (Ctrl + ,) > browser > Spring>Dashboard Open With 'Internal' -> 'external'로 변경
@@ -293,7 +293,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 	6. /controller/BoardController.java에 /board/detail/{bno} 실행 메서드 작성
 	7. /templates/board/detail.html 생성
 
-		<img src="https://raw.githubusercontent.com/hugoMGSung/basic-springboot-2024/main/images/sp003.png" width="730">
+		<img src="https://raw.githubusercontent.com/KangJeoungMi/basic-springboot-2024/main/images/sp003.png" width="730">
 
 	8. /templates/board/detail.html에 댓글영역 추가
 	9. /service/ReplyService.java 생성, 댓글 저장 메서드 작성
@@ -306,7 +306,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 		- boostrap.min.css, bootstrap.min.js templates/static 에 위치
 	12. /templates/board/list.html, detail.html 부트스트랩 적용
 
-		<img src="https://raw.githubusercontent.com/hugoMGSung/basic-springboot-2024/main/images/sp004.png" width="730">
+		<img src="https://raw.githubusercontent.com/KangJeoungMi/basic-springboot-2024/main/images/sp004.png" width="730">
 	
 
 ## 6일차
@@ -329,7 +329,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 	16. detail.html 경고영역 div는 create.html에서 복사해서 가져올 것
 	17. (문제) 각 입력창에 공백을 넣었을 때 입력되는 문제 @NotEmpty는 스페이스를 허용 -> @NotBlank로 변경
 
-		<img src="https://raw.githubusercontent.com/hugoMGSung/basic-springboot-2024/main/images/sp005.png" width="730">
+		<img src="https://raw.githubusercontent.com/KangJeoungMi/basic-springboot-2024/main/images/sp005.png" width="730">
 
 	18. /templates/layout.html에 네비게이션바(navbar) 추가
 	19. 테스트로 대량 데이터 추가
@@ -352,7 +352,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 		- /service/BoardService.java getList() 최신순 역정렬로 변경
 		- /templates/board/list.html에 게시글 번호 수정
 
-		<img src="https://raw.githubusercontent.com/hugoMGSung/basic-springboot-2024/main/images/sp006.png" width="730">
+		<img src="https://raw.githubusercontent.com/KangJeoungMi/basic-springboot-2024/main/images/sp006.png" width="730">
 
 	2. /templates/board/list.html td 뱃지태그 추가
 
@@ -414,7 +414,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 		- /templates/board/detail.html 게시글 작성자, 댓글 작성자 표시 추가
 
 	
-	<img src="https://raw.githubusercontent.com/hugoMGSung/basic-springboot-2024/main/images/sp007.png" width="730">
+	<img src="https://raw.githubusercontent.com/KangJeoungMi/basic-springboot-2024/main/images/sp007.png" width="730">
 
 
 ## 9일차
@@ -477,10 +477,10 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 		- /common/CommonUtil.java 생성
 		- /templates/board/detail.html 마크다운 뷰어 적용
 
-		<img src="https://raw.githubusercontent.com/hugoMGSung/basic-springboot-2024/main/images/sp009.png" width="730">
+		<img src="https://raw.githubusercontent.com/KangJeoungMi/basic-springboot-2024/main/images/sp009.png" width="730">
 		
 
-		<img src="https://raw.githubusercontent.com/hugoMGSung/basic-springboot-2024/main/images/sp010.png" width="730">	
+		<img src="https://raw.githubusercontent.com/KangJeoungMi/basic-springboot-2024/main/images/sp010.png" width="730">	
 
 
 	3. 카테고리 추가
