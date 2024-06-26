@@ -495,15 +495,26 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 		- /templates/list.html 카테고리 변수 추가
 		- /controller/VoardController.java create(), create() GET,POST메서드에 category추가
 
-	4. 조회수 표시
+## 11일차
+- Spring Boot JPA 프로젝트 개발 계속
+	0. RestFul URL 이 잘못된 부분
+		- /controller/MAinController.java main() 메서드 URL 변경
+
+	1. 조회수 표시
 		- /entity/Board.java 조회수 필드 추가
-		- /service/BoardService.java 메서드 추가
+		- /service/BoardService.java hitBoard() 메서드 추가
 		- /controller/BoardController.java detail()메서드 수정
 		- /templates/board/list.html 조회수 컬럼 추가
+		- DB를 Oravle -> H2
 	
-	- 비밀번호 찾기, 비밀번호 변경
-	- 조회수 추가
+	2. AWS 업로드
+		- 
 
+
+	- 에러페이지 작업(404 500 ...)
+	- 비밀번호 찾기, 비밀번호 변경
+	- 소셜 로그인(네이버, 카카오, 구글)
+	- 파일 업로드 - AWS S3
 	- 리액트 적용
 	- 리액트로 프론트엔드 설정
 	- thymeleaf - 리액트로 변경
