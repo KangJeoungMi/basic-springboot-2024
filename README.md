@@ -507,9 +507,114 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 		- /templates/board/list.html 조회수 컬럼 추가
 		- DB를 Oravle -> H2
 	
-	2. AWS 업로드
-		- 
+	2. (설정) AWS 사용
+		- https://aws.amazon.com/ko/
+		- (프리티어) 회원가입 및 로그인
+			- 매뉴얼 참조(최근 내용으로 참조)
+			- https://blogworks.co.kr/aws-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EB%A9%94%EB%89%B4%EC%96%BC/
+		- (라이트세일) https://lightsail.aws.amazon.com/
+			- 인스턴스 클릭 > 인스턴스 생성 버튼 클릭
+			- 리전 서울
+			- 인스턴스 이미지 > Linux/Unix
+			- 블루프린트 > 운영 체제(OS) 전용 클릭 > Ubuntu 22.04 LTS
+			- 인스턴스 플랜 > 듀얼 스택
+			- 크기 선택 > 월별 $12 선택(무료 중 가장 스펙이 좋음)
+			- 인스턴스 확인 > 본인이 원하는 이름으로 변경 후(Ubuntu-jeongmi)
+			- 인스턴스 생성 클릭
+			- 실행 중 확인 > ⁝ 클릭 > 관리 
+			- 네트워킹 > 고정 IP연결 > 아이피명 연결 > 생성
+			- IPv4 방화벽 > 규칙 추가 > 8080 추가
+			- 계정  > SSH키 > 기본키 다운로드(*.pem) > 이름변경(옵션)
 
+		- PuTTY AWS 리눅스 서버 연결
+			- https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html 64바트 다운로드 설치
+			- PuTTYgen 실행 > Load 기본키 선택 > Save Private Key 클릭 > .ppk로 저장
+			- Putty 실행
+				- Host Name : AWS 고정 아이피 입력
+				- Connection > SSH > Auth > Credentials : PrivateKey를 .ppk로 선택
+				- Session > Saved Session 명 입력 > Save
+				- Open 후에 콘솔 login as: ubuntu 입력
+		
+		- FileZilla로 FTP 연결
+			- https://filezilla-project.org/download.php 다운로드
+			- 사이트 관리자 열기
+				- 새 사이트
+				- 프로토콜: SFTP
+				- 호스트 : 고정 아이피 입력
+				- 로그온 유형 : 키 파일
+				- 사용자 : ubuntu
+				- 키 파일 : *.ppk 선택
+		
+		- 설정 변경(PuTTY)
+			```shell
+				> sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime (한국시간으로 변경)
+				> hostname
+				> sudo hostnamectl set-hostname joengmi
+				> sudo reboot (서버 재시작)
+
+				> sudo apt-get update (전체 서버 패키지 업데이트)
+				> java
+				> sudo apt-get install openjdk-17-jdk
+					Do you want to continue? [Y/n] y
+				> java -version
+					openjdk version "17.0.11" 2024-04-16
+					OpenJDK Runtime Environment (build 17.0.11+9-Ubuntu-122.04.1)
+					OpenJDK 64-Bit Server VM (build 17.0.11+9-Ubuntu-122.04.1, mixed mode, sharing)
+			```
+		- Visual Studio Code
+			- Gradle for java > Tasks > build > clean > build > bootJar 
+			- buld.gradle > version = '0.0.1-SNAPSHOT'-> version = '1.0.1-SNAPSHOT' 변경 - >  bootJar 
+			- *-SAPSHOT.jar 생성 확인
+		- FileZilla
+        	- *.jar > AWS로 전송
+
+      	- PuTTY
+			```shell
+				>ls
+				...
+				>cd bootserver
+				>ls
+				backboard-1.0.1-SNAPSHOT.jar
+				> java -jar backboard-1.0.1-SNAPSHOT.jar
+			```
+
+		- sudo java -jar backboard-1.0.1-SNAPSHOT.jar 로 실행하면 local.mv.db가 안만들어짐
+
+		- 스프링부트서버 백그라운드 실행 쉘 작성
+			- > nano start.sh
+			```shell
+			#!/bin/bash
+
+			JAR=backboard-1.0.2-SNAPSHOT.jar
+			LOG=/home/ubuntu/bootserver/backbord_log.log
+
+			nohup java -jar $JAR > $LOG 2>&1 &
+			```
+			- 파일권한 바꾸기(실행가능)
+			```shell
+			> chmod +x start.sh
+			```
+
+			- > nano stop.sh
+			```shell
+			#!/bin/bash
+
+			BB_PID=$(ps -ef | grep java | grep backboard | awk '{print $2}')
+
+			if [ -z "$BB_PID" ];
+			then
+				echo "BACKBOARD is not running"
+			else
+				kill -9 $BB_PID
+				echo "BACKBOARD terminated!"
+			fi
+			```
+			- 파일권한 바꾸기(실행가능)
+			```shell
+			> chmod +x stop.sh
+			```
+			
+			- 서버실행
 
 	- 에러페이지 작업(404 500 ...)
 	- 비밀번호 찾기, 비밀번호 변경
