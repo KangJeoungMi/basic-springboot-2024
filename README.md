@@ -547,19 +547,19 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 		
 		- 설정 변경(PuTTY)
 			```shell
-				> sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime (한국시간으로 변경)
-				> hostname
-				> sudo hostnamectl set-hostname joengmi
-				> sudo reboot (서버 재시작)
+			> sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime (한국시간으로 변경)
+			> hostname
+			> sudo hostnamectl set-hostname joengmi
+			> sudo reboot (서버 재시작)
 
-				> sudo apt-get update (전체 서버 패키지 업데이트)
-				> java
-				> sudo apt-get install openjdk-17-jdk
-					Do you want to continue? [Y/n] y
-				> java -version
-					openjdk version "17.0.11" 2024-04-16
-					OpenJDK Runtime Environment (build 17.0.11+9-Ubuntu-122.04.1)
-					OpenJDK 64-Bit Server VM (build 17.0.11+9-Ubuntu-122.04.1, mixed mode, sharing)
+			> sudo apt-get update (전체 서버 패키지 업데이트)
+			> java
+			> sudo apt-get install openjdk-17-jdk
+				Do you want to continue? [Y/n] y
+			> java -version
+				openjdk version "17.0.11" 2024-04-16
+				OpenJDK Runtime Environment (build 17.0.11+9-Ubuntu-122.04.1)
+				OpenJDK 64-Bit Server VM (build 17.0.11+9-Ubuntu-122.04.1, mixed mode, sharing)
 			```
 		- Visual Studio Code
 			- Gradle for java > Tasks > build > clean > build > bootJar 
@@ -581,45 +581,72 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 		- sudo java -jar backboard-1.0.1-SNAPSHOT.jar 로 실행하면 local.mv.db가 안만들어짐
 
 		- 스프링부트서버 백그라운드 실행 쉘 작성
-			- > nano start.sh
+			> nano start.sh
 			```shell
-			#!/bin/bash
+				#!/bin/bash
 
-			JAR=backboard-1.0.2-SNAPSHOT.jar
-			LOG=/home/ubuntu/bootserver/backbord_log.log
+				JAR=backboard-1.0.2-SNAPSHOT.jar
+				LOG=/home/ubuntu/bootserver/backbord_log.log
 
-			nohup java -jar $JAR > $LOG 2>&1 &
+				nohup java -jar $JAR > $LOG 2>&1 &
 			```
 			- 파일권한 바꾸기(실행가능)
 			```shell
-			> chmod +x start.sh
+				> chmod +x start.sh
 			```
 
-			- > nano stop.sh
+			> nano stop.sh
 			```shell
-			#!/bin/bash
+				#!/bin/bash
 
-			BB_PID=$(ps -ef | grep java | grep backboard | awk '{print $2}')
+				BB_PID=$(ps -ef | grep java | grep backboard | awk '{print $2}')
 
-			if [ -z "$BB_PID" ];
-			then
-				echo "BACKBOARD is not running"
-			else
-				kill -9 $BB_PID
-				echo "BACKBOARD terminated!"
-			fi
+				if [ -z "$BB_PID" ];
+				then
+					echo "BACKBOARD is not running"
+				else
+					kill -9 $BB_PID
+					echo "BACKBOARD terminated!"
+				fi
 			```
 			- 파일권한 바꾸기(실행가능)
 			```shell
-			> chmod +x stop.sh
+				> chmod +x stop.sh
 			```
 			
 			- 서버실행
 
-	- 에러페이지 작업(404 500 ...)
-	- 비밀번호 찾기, 비밀번호 변경
-	- 소셜 로그인(네이버, 카카오, 구글)
+		<img src="https://github.com/KangJeoungMi/basic-springboot-2024/blob/master/images/sp011.png" width="730">	
+
+## 12일차
+- Spring Boot JPA 프로젝트 개발 계속
+	1. 에러페이지 작업(404 500 ...)
+		- applicaiotn.properties 에러페이지 관련 설정 추가
+		- resource/static/img/bg_error.jpg 저장
+		- resource/templates/404.html, 500.html, error.html 페이지 생성
+		- /controller.CustomErrorController.java 생성
+	
+	<img src="https://github.com/KangJeoungMi/basic-springboot-2024/blob/master/images/sp012.png" width="730">	
+
+
+
+	2. 비밀번호 변경
+		- build.gradle 메일을 보내기 휘한 디펜던시 추가
+		- application.properties 메일설정(네이버) 입력
+			- 네이버 메일 SMTP 설정 > 환경설정 > pop3/IMAP 설정
+			<img src="https://github.com/KangJeoungMi/basic-springboot-2024/blob/master/images/sp013.png" width="730">
+		- /service/MailService.java 생성
+		- /restcontroller/MailController.java 생성
+		- https://www.postman.com/ 다운로드
+		- 비밀번호 초기화 화면으로 이동
+		- 비밀번호, 비밀번호 확인 입력
+	3. 구글 로그인
+
+
+
+
 	- 파일 업로드 - AWS S3
+	- 로그인 한 사용자 헤더에 표시
 	- 리액트 적용
 	- 리액트로 프론트엔드 설정
 	- thymeleaf - 리액트로 변경
