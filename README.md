@@ -676,7 +676,127 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 	- http://localhost:8080/user/resetpassword (회원가입과 유사하게 개발)
 
 ## 13일차
-- Spring Boot JPA 프로젝트 개발 계속
+- 리액트
+	- 서버사이드 -> 백엔드
+	- 클라이언트사이드 -> 프론트엔드
+	- 프론트엔드 : HTML+CSS+JS(html, jps, aspx, php, ...)
+	- js만 가지고 프론트엔드를 만들어 보자 -> 리액트
+	- css는 있어야 한다.
+	- 페이스북이 자기 웹페이지 프론트를 좀 더 개선해보고자 개발 시작
+	- 리액트는 기본적으로  SPA(Single Page Application)을 목적으로 
+	- Node.js 서버 사이드 js를 사용해서 서버를 동작
+
+- 리액트 개발순서
+	1. Node.js 설치
+		- https://nodejs.org/en 에서 Download Node.js(LTS) 클릭
+		- 패키지 매니저 종류 : npm, chocolatey, yarn, ...(본인이 필요한 것만 공부)
+		- 설치 후 콘솔에서 node --version로 확인 현재 v20.15.0
+	2.  리액트 패키지 설치
+		- > npm uninstall -g create-react-app
+		- > npm install -g create-react-app
+
+	3. 리액트 프로젝트를 초기화
+		- VS code 에서 터미널 오픈
+		- > npx create=react-app basic-app
+
+	4. 리액트 실행
+		- 콘솔에서 위에서 만든 프로젝트 앱 이름까지 진입 basic-app
+		- > npm start
+		- 웹브라우저가 http://localhost:3000 서버 확인
+		- node가 3000포트로 웹서버를 실행
+		- 웹서버가 실행된 상태에서 개발하는 것이 가장 좋음
+		- index.html(jsp, php) 가 맨 처음 화면, App.js가 메인 개발 부분
+
+- 리액트 기본구조 및 개발 방법
+	1. 깃헙 .gitignore에 react(node)관련 설정내용 추가
+	2. 깃험에 .gitignore 먼저 커밋하고 푸시
+
+	3. src/App.css, App.js, index.js 파일만
+	4. javascript이기 때문에 js위주로 개발
+	5. App.js부터 개발ㅇ르 시작하면 됨
+
+- 리액트 기초 공부
+	1. html의 태그처럼 개발자가 새로운 요소(객체)를 생성할 수 있음
+		```jsx
+			function CustomButton(){
+			return(
+				<button>MyButton</button>
+			);
+
+			}
+		```
+	2. /conponent/CustomButton.js 생성, 위의 소스를 옮김
+
+	3. React 문법은 JSX. 일반 js와 조금 차이가 있음
+		- className은 JSX에만 존재
+		- HTML에 있던 class는 JSX에서 className으로 변경
+		- 인라인으로 style쓸때 CSS 명칭이 다름
+		- 대신, *.css 파일로 작업할 때는 기존 그대로 사용해도 무방
+		- JSX문법에는 모든 요소는 상위 태그 하나에 속해야 함
+		- https://transform.tools/html-to-jsx 참조할 것
+
+	4. 데이터 화면에 표시
+		- 변수 생성시 const 많이 씀
+		- 변수 사용시 중괄호 ({}) 사이에 입력
+		- css를 *.css파일에 작성할때는 html에서 사용할때와 동일
+			- ex. border-radius : 50%;
+		- JSX에 사용할때는 변경
+			- ex. borderRadius : '50%'
+		- 리액트에서 css를 쓸때는 *.css 파일로 작업할 것
+
+	5. 조건부 렌더링
+		```jsx		
+		function CustomButton() {
+		let isLoggedIn = false; // 로그인 여부
+		let content;
+
+		if (isLoggedIn) {
+			content = <button>Log Out</button>;
+		} else {
+			content = <button>Log In</button>
+		}
+
+		return (
+			<>
+			{content}
+			</>
+			// div로도 가능하지만 <>만으로도 가능
+		);
+		}
+
+		export default CustomButton;    // 외부에서 사용하려면 필수!
+		```
+
+		- 또는
+
+		``` jsx
+			function CustomButton() {
+			let isLoggedIn = false;
+			let content;
+
+			return (
+				<>
+				{
+					isLoggedIn ? (
+					<button>Log Out</button>
+					) : (
+					<button>Log In</button>
+					)
+
+				}
+				</>
+				// div로도 가능하지만 <>만으로도 가능
+			);
+			}
+
+			export default CustomButton;    // 외부에서 사용하려면 필수!
+		```
+
+	6. 목록 표시
+		- for, map() 함수를 많이 사용
+		- map()을 쓰면 for문 보다 짧게 구현 가능
+		<img src="https://github.com/KangJeoungMi/basic-springboot-2024/blob/master/images/react001.png" width="730">	
+
 	1. frontboard(react)
 
 	2. restApI
