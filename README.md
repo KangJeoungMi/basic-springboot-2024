@@ -824,43 +824,75 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 
 - 리액트 추가내용
 	1. 리액트 관련 프레임워크
-		- Next.js : 풀스택 React프레임워크
-		- Gatsby : 정적 사이트 React프레임워크
-		- React Native : Android, iOS 멀티플랫폼 모바일 프레임워크
-		- VSCode React Refactor : 리팩팅 도구
-
+		- Next.js - 풀스택 React프레임워크
+		- Gatsby - 정적사이트 React프레임워크
+		- React Native - Android, iOS 멀티플랫폼 모바일 프레임워크
+	
 	2. npm으로 추가 라이브러리 설치
-		- npm install react react-dom
+		- > npm install react react-dom
 
 	3. VS Code 확장
 		- ES7 + React/Redux/React-Native snippet 설치
-		- Simple React Snippets
+		- VSCode React Refactor : 리팩팅 도구
 		- Import Cost : 라이브러리 비용 계산
+		- Simple React Snippets 
 
-	4. 리액트 디버거
+	4. 리액트 개발자 도구
 		- 크롬, 엣지 브라우저별로 따로 존재
 		- React Developer Tools 설치
-	
-- Spring Boot React 연동 프로젝트 개발 계속
+
+## 14일차
+- Spring Boot React연동 프로젝트 개발 계속
 	1. 리액트 프로젝트 생성
-		- 터미널 열기 -> spring03으로 이동
+		- 터미널 /spring03 으로 이동
 		- > npx create-react-app frontboard
 
+	2. Spring Boot / React 같이 개발할 떄
+		- Spring Boot 웹서버 실행
+		- React 프론트 웹서버 실행
 
-	1. frontboard(react)
+	3. 이랙트 라이브러리 설치, npm
+		- 리액트용 Bootstrap 설치
+		- > npm install react-bootstrp bootstrap -> css 디자인
+		- **Tip‼️ npm audit fix --force**
+		- > npm install axios -> REST API 통신 라이브러리
+		- > npm install react-router-dom -> 리액트 화면 네비게이션
+		- > npm install react-js-pagination -> 리액트 페이징 처리
 
-	2. restApI
+	4. frontboard 개발 시작
+		- App.js, logo.svg 삭제, react-router-dom으로 Routes, Route 사용
+		- index.js, reportWebVitals() 삭제
+		- index.js, <React.StrictMode> 삭제 또는 주석
+		- src/layout/Header.js, Footer.js
+		- src/routes/Home.js, Board.js, Qna.js, Login.js 생성
+		- App.js aka에 Route될 화면 추가
+		- Header.js에 react-router-dom추가 , Link , useNavigate 사용
+	
+	5. backboard RestAPI 추가
+		- /restcontroller/RestBoardController.java 생성, BoardController에 있는 메서드 복사
+		- (문제)Spring Boot와 Rest API 간의 리턴 데이터 차이때문에 100% 호환안됨
+		- (문제) Spring Boot에서 만든 Entity는 Board와 Reply등의 OneToMany / ManyToOne가 JSON으로 변환할때 문제발생!
+		- /Entity를 그대로 사용하지 말고, RestAPI에서는 다른 클래스를 만들어야 함
+		- /dto/BoardDto.java 생성
+		- /dto/ReplyDto.java 생성
+		- /RestBoardController.java getList()를 Board Entity -> BoardDto로 변경
+		- /security/SecurityConfig.java CORS 설정 추가
 
-2. 구글 로그인
-	- https://console.cloud.google.com/ 구글클라우드 콘솔
-	- 프로젝트 생성
-	- OAuth 동의화면 설정
-	- 개발 계속...
+  	6. frontboard 개발 계속
+   		- /BoardList.js axios RestAPI 호출내용 추가
+		- 테이블 내용을 boardList.map() 10개 리스트 디스플레이
+		<img src="https://github.com/KangJeoungMi/basic-springboot-2024/blob/master/images/react003.png" width="730">
 
-	- 리액트 적용
-	- 리액트로 프론트엔드 설정
-	- thymeleaf - 리액트로 변경
-	- Spring boot RestAPI 작업
+
+
+
+
+	3. 구글 로그인
+		- https://console.cloud.google.com/ 구글클라우드 콘솔
+		- 프로젝트 생성
+		- OAuth 동의화면 설정
+		- 개발 계속...
+
 
 ## 계속
 - Spring Boot JPA 프로젝트
@@ -874,4 +906,4 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 
 
 	
-
+	

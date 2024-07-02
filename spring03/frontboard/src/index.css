@@ -1,3 +1,6 @@
+html, body{
+  height: 100%
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +13,19 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.header {
+  height: 90px;
+}
+
+.footer {
+  height: 57px;
+}
+
+
+.main {
+  background-color: #f7e5e5;
+  min-height: 400px;
+  height: calc(100vh - 100px - 72px);
 }

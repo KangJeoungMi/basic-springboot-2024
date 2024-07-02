@@ -12,6 +12,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+
+import java.util.Collections;
 
 // 스프링시큐리티 핵심파일!
 @Configuration
@@ -30,6 +34,8 @@ public class SecurityConfig {
             // .authorizeHttpRequests((atr) -> atr.requestMatchers(new AntPathRequestMatcher("/member/register"),
             //                                                     new AntPathRequestMatcher("/member/login"))
             // .permitAll())
+            // CORS 타서버간 접근 권한
+            .cors(corsConfig -> corsConfig.configurationSource(corsConfigurationSource()))
             // CSRF 위변조 공격을 막는 부분 해제, 특정 URL은 csrf공격 리스트에서 제거
             // .csrf((csrf) -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
             //  REST APO 전달 시 403 ERROR 발생
@@ -50,6 +56,18 @@ public class SecurityConfig {
         ;
 
         return http.build();
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        return request -> {
+            CorsConfiguration config = new CorsConfiguration();
+            config.setAllowedHeaders(Collections.singletonList("*"));
+            config.setAllowedMethods(Collections.singletonList("*"));
+            config.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000/")); // 허용할 Origin URL
+            config.setAllowCredentials(true);
+            return config;
+        };
     }
 
     @Bean
