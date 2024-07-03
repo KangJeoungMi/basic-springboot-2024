@@ -884,6 +884,43 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 		<img src="https://github.com/KangJeoungMi/basic-springboot-2024/blob/master/images/react003.png" width="730">
 
 
+## 15일차
+- Spring Boot React연동 프로젝트 개발 계속
+	1. Spring Boot 서버가 실행되지 않았을 때
+		- 프론트 서버부터 시작하면 Uncaught runtime error. 발생
+		- axios request가 예외발생 try - catch로 wrapping 해줘야 함
+
+	2. 페이징
+		- (Back) /dto/PagingDto.java 생성
+		- RestBoardController.java list() 수정 List<BoardDto> -> Header<List<BoardDto>> 로 형 변환
+		- (Front) /BoardList.js 변수부분 수정
+		- /common/CommonFunc.js 생성 - 작성일을 수정함수 formatDate() 작성
+		- /BoardList.js 날짜부분에 formatDate() 적용
+		- /BoardList.js 댓글 갯수 표시
+		- (Back) /dto/BoardDto.java 게시글 번호 변수 추가
+		- RestBoardControll.java 게시글번호 계산로직 추가
+		- (Front) /BoardList.js bno를 num로 변경
+
+
+	1. 상세화면
+		- (Back) RestBoardController.java detail() 메서드 생성
+		- (Front) /BoardList.js 제목 수정
+		- /routes/BoardDetail.js 생성
+
+## 16일차
+- Spring Boot React연동 프로젝트 개발 계속
+	1. 로그인
+
+	2. 상세화면 완료
+
+	3. 입력화면
+
+
+
+
+
+
+
 
 
 
@@ -902,8 +939,3 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 
 	- 파일업로드 - AWS S3 체크
 	- 로그인한 사용자 헤더에 표시
-
-
-
-	
-	

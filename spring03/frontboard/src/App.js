@@ -11,6 +11,7 @@ import Home from './routes/Home';
 import BoardList from './routes/BoardList';
 import Login from './routes/Login';
 import QnaList from './routes/QnaList';
+import BoardDetail from './routes/BoardDetail';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path='/Home' element={<Home />} />
       <Route path='/BoardList' element={<BoardList />} />
       <Route path='/Login' element={<Login />} />
+      <Route path='/BoardDetail/:bno' element={<BoardDetail />} />
       <Route path='/QnaList' element={<QnaList />} />
     </Routes>
   );
