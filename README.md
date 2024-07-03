@@ -892,6 +892,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 
 	2. 페이징
 		- (Back) /dto/PagingDto.java 생성
+		- /dto/Header.java 생성
 		- RestBoardController.java list() 수정 List<BoardDto> -> Header<List<BoardDto>> 로 형 변환
 		- (Front) /BoardList.js 변수부분 수정
 		- /common/CommonFunc.js 생성 - 작성일을 수정함수 formatDate() 작성
@@ -914,28 +915,3 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 	2. 상세화면 완료
 
 	3. 입력화면
-
-
-
-
-
-
-
-
-
-
-	3. 구글 로그인
-		- https://console.cloud.google.com/ 구글클라우드 콘솔
-		- 프로젝트 생성
-		- OAuth 동의화면 설정
-		- 개발 계속...
-
-
-## 계속
-- Spring Boot JPA 프로젝트
-	1. 남은 것
-		- 8080 -> 80 서버
-		- http -> https 변경
-
-	- 파일업로드 - AWS S3 체크
-	- 로그인한 사용자 헤더에 표시
