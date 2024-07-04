@@ -54,9 +54,8 @@ public class Header<T> {
     public static <T> Header<T> OK(String description){
         return (Header<T>) Header.builder()
                                     .transactionTime(LocalDateTime.now())
-                                    .resultCode("OK")
-                                    .description("No error")
-                                    .data(description)
+                                    .resultCode("ERROR")
+                                    .description(description)
                                     .build();
     }
 

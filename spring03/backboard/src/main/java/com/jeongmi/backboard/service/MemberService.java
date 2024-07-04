@@ -10,11 +10,13 @@ import com.jeongmi.backboard.repository.MemberRepository;
 import com.jeongmi.backboard.security.MemberRole;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class MemberService {
     
     private final MemberRepository memberRepository;
@@ -58,6 +60,31 @@ public class MemberService {
             return member.get();
         else
             throw new NotFoundException("Member not found!");
+    }
+
+    // 2024.07.04 React에서 넘어온 정보로 로그인 확아니
+    public Member getMemberByUsernameAndPassword(String username, String password) {
+
+        Optional<Member> _member = this.memberRepository.findByUsername(username);
+        log.info(String.format("!!!!!!!! : %s", _member.get().getPassword()));
+        
+        Member realMember;        
+        if (_member.isPresent()) {
+            realMember = _member.get(); // 같은 이름의 사용자 정봐 다 넘어옴(암호화된 비밀번호까지)
+            // plain text와 암호화된 값이 같은 값을 가지고 있는지 체크
+            boolean isMatched = passwordEncoder.matches(password, realMember.getPassword());
+
+            log.info(String.format("!!!!!!!! : %s", isMatched));
+
+            if(isMatched)
+                return realMember;
+            else 
+                throw new NotFoundException("Member Not Found!!");
+        }
+        else {
+            throw new NotFoundException("Member Not Found!!");
+        }
+
     }
 
 }

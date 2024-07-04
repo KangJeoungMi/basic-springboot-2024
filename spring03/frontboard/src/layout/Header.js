@@ -3,6 +3,28 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
 
+    const navigate = useNavigate(); // Hook함수는 직접 사용불가(x)
+    function gotoLogin() {
+        navigate('/login');
+    }
+    function logout(){
+        // localStorage.setItem("username", "");
+        // localStorage.setItem("email", "");
+        // localStorage.setItem("mid", "");
+        // localStorage.setItem("role", "");
+        // localStorage.setItem("loginDt", "");
+        // window.location.replace("http://localhost:3000/home");
+        
+        localStorage.removeItem('username');
+        localStorage.removeItem('email');
+        localStorage.removeItem('mid');
+        localStorage.removeItem('role');
+        localStorage.removeItem('loginDt');
+        window.location.reload();
+
+        // navigate('/home');
+    }
+
     // return은 화면을 그리겠다
     return (
         <div className="container  header">
@@ -20,8 +42,16 @@ const Header = () => {
                 </ul>
 
                 <div className='col-md-3 text-end me-5'>
-                    로그인
-                    회원가입
+                    {localStorage.getItem("username") != null ? (
+                        <button type='button' className='btn btn-outline-primary me-2' onClick={logout}>로그아웃</button>
+
+                    ) : (
+                        <>
+                            <button type='button' className='btn btn-outline-primary me-2' onClick={gotoLogin}>로그인</button>
+                            <button type='button' className='btn btn-primary me-2'>회원가입</button>
+                        </>
+                    )}
+
                 </div>
             </header>
         </div>
